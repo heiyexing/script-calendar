@@ -1,0 +1,153 @@
+@font-face {
+  font-family: "norwester";
+  src: url("/public/fonts/norwester.ttf");
+}
+
+@font-face {
+  font-family: "Jura";
+  src: url("/public/fonts/Jura-Medium.woff2");
+}
+
+@font-face {
+  font-family: "AlimamaFangYuanTiVF";
+  src: url("/public/fonts/AlimamaFangYuanTiVF-Thin.ttf");
+}
+
+.page {
+  font-family: AlimamaFangYuanTiVF;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+}
+
+.poster {
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+}
+
+.poster-left {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.poster-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-img {
+  border-radius: 8px;
+}
+
+.script-name {
+  font-weight: bold;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.script-tags {
+  margin-top: 14px;
+  font-size: 12px;
+}
+
+.script-description-panel {
+  flex-grow: 1;
+  flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+}
+
+.script-description {
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5; /* 替换为你想要的行数 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 24px;
+  font-size: 14px;
+  color: #111111;
+  white-space: pre-line;
+}
+
+.poster-right {
+  flex-grow: 1;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.poster-month {
+  font-family: "norwester";
+  font-weight: 500;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.poster-date {
+  font-family: "norwester";
+  font-size: 100px;
+  margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.poster-week {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.poster-lunar {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.poster-festivals {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.poster-festival {
+  background-color: #cf1322;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 2px 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-left: 4px;
+}
+
+.poster-tips {
+  border: 1px solid #aaaaaa;
+  border-radius: 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.poster-tips-title {
+  font-family: "norwester";
+  position: absolute;
+  left: 4px;
+  top: -10px;
+  background-color: #ffffff;
+  line-height: 20px;
+  font-weight: bold;
+  padding: 0 4px 0 4px;
+  color: #aaaaaa;
+  letter-spacing: 1px;
+}
