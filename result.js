@@ -1,5 +1,5 @@
 const scriptCalendar = require("./script-calendar.json");
-const scriptList = require("./script-list-with-match.json");
+const scriptList = require("./script-list.json");
 const fs = require("fs-extra");
 const path = require("path");
 

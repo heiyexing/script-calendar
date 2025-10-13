@@ -2,7 +2,7 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs-extra");
 const path = require("path");
-const result = require("./result.json");
+const result = require("./poster-web/src/result.json");
 
 const domain = "http://localhost:5173/";
 const outDir = path.resolve(__dirname, "shots");
@@ -19,7 +19,9 @@ fs.emptyDirSync(outDir);
   await page.waitForSelector(".poster");
 
   for (let index = 0; index < 365; index++) {
-    await page.waitForNetworkIdle();
+    await page.waitForNetworkIdle({
+      idleTime: 100,
+    });
     // 3. 截取这个节点
     const el = await page.$(".poster");
     const outFile = path.join(outDir, `${result[index].date}.png`);

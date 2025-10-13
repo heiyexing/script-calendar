@@ -1,16 +1,17 @@
-const scripts = require("./scripts.json");
-const har = require("./har.json");
-const har1 = require("./har1.json");
+const scripts = require("./script-list.json");
+// const har = require("./har.json");
+// const har1 = require("./har1.json");
 const fs = require("fs");
 const pLimit = require("p-limit").default;
 
 const limit = pLimit(10);
 
-console.log("当前总数：", Object.keys(scripts).length);
+console.log("当前总数：", scripts.length);
 
 function getScriptDetail(scriptId) {
-  if (scripts[scriptId]) {
-    console.log(`[${scripts[scriptId].scriptName}] 已存在，跳过`);
+  const targetScript = scripts.find((s) => s.scriptId === scriptId);
+  if (targetScript) {
+    console.log(`[${targetScript.scriptName}] 已存在，跳过`);
     return;
   }
   function hex(t, e = 32) {
@@ -280,9 +281,8 @@ function getScriptDetail(scriptId) {
     .then((res) => res.json())
     .then((res) => {
       if (res.head.code === 200 && res.data) {
-        scripts[scriptId] = res.data;
+        scripts.push(res.data);
         console.log(`[${res.data.scriptName}] 请求完成`);
-        fs.writeFileSync("./scripts.json", JSON.stringify(scripts, null, 2));
         return res.data;
       }
     });
@@ -290,20 +290,20 @@ function getScriptDetail(scriptId) {
 
 const promiseList = [];
 
-[...har.log.entries, ...har1.log.entries].forEach((item) => {
-  if (
-    item.request.url !==
-    "https://juzujujk.joylovemeet.cn/v9/script/scriptSearchPage"
-  ) {
-    return;
-  }
-  const res = JSON.parse(item.response.content.text);
-  if (res.head.code === 200 && res.data) {
-    res.data.items.forEach((script) => {
-      promiseList.push(limit(() => getScriptDetail(script.scriptId)));
-    });
-  }
-});
+// [...har.log.entries, ...har1.log.entries].forEach((item) => {
+//   if (
+//     item.request.url !==
+//     "https://juzujujk.joylovemeet.cn/v9/script/scriptSearchPage"
+//   ) {
+//     return;
+//   }
+//   const res = JSON.parse(item.response.content.text);
+//   if (res.head.code === 200 && res.data) {
+//     res.data.items.forEach((script) => {
+//       promiseList.push(limit(() => getScriptDetail(script.scriptId)));
+//     });
+//   }
+// });
 
 [
   "352334670013312512",
@@ -324,6 +324,7 @@ const promiseList = [];
   "101449575665009664",
   "83753296793137835",
   "369409063390457344",
+  "473278019901840896",
 ].forEach(id => {
   promiseList.push(limit(() => getScriptDetail(id)));
 });
@@ -331,6 +332,6 @@ const promiseList = [];
 Promise.all(promiseList).then(() => {
   fs.writeFileSync(
     "./script-list.json",
-    JSON.stringify(Object.values(scripts), null, 2)
+    JSON.stringify(scripts, null, 2)
   );
 });

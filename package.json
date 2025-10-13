@@ -13,7 +13,10 @@
   "main": "fetch.js",
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fetch": "node fetch.js",
+    "poster": "node poster.js",
+    "result": "node result.js",
+    "puppeteer": "node puppeteer.js"
   },
   "repository": {
     "type": "git",

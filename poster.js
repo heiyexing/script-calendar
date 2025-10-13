@@ -25,7 +25,7 @@ fs.ensureDirSync(posterDirName);
           `${script.scriptName}.jpg`
         );
         if (fs.existsSync(filePath)) {
-          // console.log(`${script.scriptName} exists, skip download.`);
+          console.log(`${script.scriptName} exists, skip download.`);
           return;
         }
         const buffer = await fetch(script.scriptCoverUrl, {

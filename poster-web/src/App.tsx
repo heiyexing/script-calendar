@@ -44,7 +44,7 @@ function App() {
 
     const vacation =
       DATE_VACATION_MAP[_date] ||
-      (["六", "日"].includes(weekday) ? "周末" : null);
+      (["六", "日"].includes(weekday) ? "放假" : null);
 
     if (vacation) {
       festivals.push(vacation);
