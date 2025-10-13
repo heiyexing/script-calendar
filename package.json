@@ -4,6 +4,25 @@
     "dayjs": "^1.11.13",
     "fs-extra": "^11.3.1",
     "p-limit": "^7.1.1",
+    "puppeteer": "^24.24.0",
     "sharp": "^0.34.3"
-  }
+  },
+  "name": "calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fetch.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heiyexing/script-calendar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heiyexing/script-calendar/issues"
+  },
+  "homepage": "https://github.com/heiyexing/script-calendar#readme"
 }

@@ -10,7 +10,8 @@ const scriptNamesInCalendar = new Set(
   scriptCalendar.map((item) => item["剧本杀名称"])
 );
 
-const posterDirName = path.resolve(__dirname, "./poster");
+const posterDirName = path.resolve(__dirname, "./poster-web/public/poster");
+fs.ensureDirSync(posterDirName);
 
 (async () => {
   await Promise.all(
@@ -49,11 +50,23 @@ const posterDirName = path.resolve(__dirname, "./poster");
   );
 
   const posterNames = fs.readdirSync(posterDirName);
-  posterNames.forEach(async (posterName) => {
-    const filePath = path.resolve(posterDirName, posterName);
-    const {width, height} = await sharp(filePath).metadata();
-    if (width > height) {
-      console.log(path.resolve(posterDirName, posterName));
-    }
+  const overrideDirName = path.resolve(__dirname, "./override-poster");
+  fs.ensureDirSync(overrideDirName);
+  // posterNames.forEach(async (posterName) => {
+  //   const filePath = path.resolve(posterDirName, posterName);
+  //   const { width, height } = await sharp(filePath).metadata();
+  //   if (width > height) {
+  //     fs.copyFileSync(filePath, path.resolve(overrideDirName, posterName));
+  //     console.log(`Overridden ${posterName}`);
+  //   }
+  // });
+
+  const overridePosterNames = fs.readdirSync(overrideDirName);
+  overridePosterNames.forEach((posterName) => {
+    fs.copyFileSync(
+      path.resolve(overrideDirName, posterName),
+      path.resolve(posterDirName, posterName)
+    );
+    console.log(`Overridden ${posterName}`);
   });
 })();
