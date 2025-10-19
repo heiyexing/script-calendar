@@ -203,14 +203,7 @@ function App() {
             <div className="poster-festivals">
               {festivals?.map((festival) => {
                 return (
-                  <div
-                    className="poster-festival"
-                    style={{
-                      backgroundColor:
-                        festival === "补" ? "#0958d9" : undefined,
-                    }}
-                    key={festival}
-                  >
+                  <div className="poster-festival" key={festival}>
                     {festival}
                   </div>
                 );
