@@ -44,7 +44,7 @@ function App() {
 
     const vacation =
       DATE_VACATION_MAP[_date] ||
-      (["六", "日"].includes(weekday) ? "放假" : null);
+      (["六", "日"].includes(weekday) ? "休" : null);
 
     if (vacation) {
       festivals.push(vacation);
@@ -64,7 +64,7 @@ function App() {
 
     return {
       scriptName,
-      scriptImg: location.origin + `/public/poster/${scriptName}.jpg`,
+      scriptImg: location.origin + `/poster/${scriptName}.jpg`,
       festivals,
       scriptTextContent: scriptTextContent
         ?.split("\n")
@@ -164,7 +164,7 @@ function App() {
             className="poster-info"
             style={{ height: `calc(100% - ${POSTER_HEIGHT * 0.62}px)` }}
           >
-            <div className="script-name">《{scriptName}》</div>
+            <div className="script-name">{scriptName}</div>
             <div className="script-tags">{scriptLabelNames?.join(" | ")}</div>
             <div className="script-description-panel">
               <div className="script-description">
@@ -207,7 +207,7 @@ function App() {
                     className="poster-festival"
                     style={{
                       backgroundColor:
-                        festival === "补班" ? "#0958d9" : undefined,
+                        festival === "补" ? "#0958d9" : undefined,
                     }}
                     key={festival}
                   >
